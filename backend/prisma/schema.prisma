@@ -1,0 +1,35 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Users table — for authentication
+model User {
+  id        Int     @id @default(autoincrement())
+  name      String
+  email     String  @unique
+  passwordHash String
+  role      String  @default("ib_manager")
+  createdAt DateTime @default(now())
+  partners Partner[]
+}
+
+// IB Partners table — specific to your role
+model Partner {
+  id          Int     @id @default(autoincrement())
+  name        String
+  company     String
+  email       String  @unique
+  country     String
+  status      String  @default("pending")
+  commissionRate Float @default(0.0)
+  volume      Float   @default(0.0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  userId      Int
+  user        User    @relation(fields: [userId], references: [id])
+}

@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+package-lock.json
+npm-debug.log
+yarn-error.log
+
+# Environment variables (secrets)
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build output
+dist/
+build/
+
+# Logs
+*.log
+logs/
+
+# Prisma
+.prisma/
